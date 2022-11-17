@@ -1,7 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void swap(int* a, int* b)
+{
+    int temp = *b;
+    *b=*a;
+    *a=temp;
+}
 
+void maxheapify(int* a, int n, int i)
+{
+    int big = i ;
+    int l = 2 * i + 1;
+    int r = 2 * i + 2;
+
+    if (l<n && a[l]>a[big]){big=l;}
+
+    if (r < n && a[r] > a[big]){big=r;}
+
+    if (big != i){swap(&a[i], &a[big]); maxheapify(a,n,big);}
+}
 
 int extractmax(int arr[], int n)
  {
